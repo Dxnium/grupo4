@@ -3,7 +3,7 @@ export default function Clientes() {
     { idUsuario: 1, idPersona: 116500405, nombre: "David", apellido1: "Zamora", apellido2: "Perez" },
     { idUsuario: 2, idPersona: 158700678, nombre: "Edwin", apellido1: "López", apellido2: "Fernández" },
     { idUsuario: 3, idPersona: 145687987, nombre: "Carlos", apellido1: "Sanchez", apellido2: "Coen" },
-    { idUsuario: 4, idPersona: 195246875, nombre: "Daniel", apellido1: "Perez", apellido2: "Rodríguez" }
+    { idUsuario: 4, idPersona: 195246875, nombre: "Daniel", apellido1: "Salazar", apellido2: "Rodríguez" }
   ];
 
   return (
