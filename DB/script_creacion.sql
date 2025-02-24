@@ -1,3 +1,25 @@
+-- Create the admin login at the server level if it does not exist
+IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ShopEasyAdmin')
+BEGIN
+    CREATE LOGIN ShopEasyAdmin WITH PASSWORD = 'contrasena';
+END
+GO
+
+-- Use ShopEasyDB
+USE ShopEasyDB;
+GO
+
+-- Create the database user if it does not exist
+IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = 'ShopEasyAdmin')
+BEGIN
+    CREATE USER ShopEasyAdmin FOR LOGIN ShopEasyAdmin;
+END
+GO
+
+-- Assign db_owner role to ShopEasyAdmin
+ALTER ROLE db_owner ADD MEMBER ShopEasyAdmin;
+GO
+
 -- Crear la base de datos si no existe
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'ShopEasyDB')
 BEGIN
