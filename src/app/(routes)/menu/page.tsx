@@ -1,6 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+export default function Menu() {
+    return (
+      <div>
+        <h1>Menu principal</h1>
 
-
-export default function menu(){
-
-}
+        
+      </div>
+    );
+  }
+  
