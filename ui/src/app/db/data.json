@@ -1,0 +1,93 @@
+{
+    "clientes": [
+      {
+        "id_cliente": 1,
+        "nombre": "Juan Pérez",
+        "correo": "juan.perez@example.com",
+        "telefono": "1234567890",
+        "direccion": "Calle Falsa 123, Ciudad",
+        "fecha_registro": "2024-03-25T14:30:00"
+      },
+      {
+        "id_cliente": 2,
+        "nombre": "María Gómez",
+        "correo": "maria.gomez@example.com",
+        "telefono": "0987654321",
+        "direccion": "Avenida Central 456, Ciudad",
+        "fecha_registro": "2024-03-25T14:30:00"
+      }
+    ],
+    "productos": [
+      {
+        "id_producto": 1,
+        "nombre": "Laptop Dell XPS",
+        "descripcion": "Laptop de alto rendimiento con Intel i7 y 16GB RAM",
+        "precio": 1200.00,
+        "stock": 10,
+        "fecha_creacion": "2024-03-25T14:30:00"
+      },
+      {
+        "id_producto": 2,
+        "nombre": "Mouse Logitech",
+        "descripcion": "Mouse inalámbrico ergonómico",
+        "precio": 25.50,
+        "stock": 50,
+        "fecha_creacion": "2024-03-25T14:30:00"
+      }
+    ],
+    "pedidos": [
+      {
+        "id_pedido": 1,
+        "id_cliente": 1,
+        "fecha_pedido": "2024-03-25T14:30:00",
+        "estado": "pendiente",
+        "total": 1225.50,
+        "detalles": [
+          {
+            "id_producto": 1,
+            "nombre": "Laptop Dell XPS",
+            "cantidad": 1,
+            "precio_unitario": 1200.00,
+            "subtotal": 1200.00
+          },
+          {
+            "id_producto": 2,
+            "nombre": "Mouse Logitech",
+            "cantidad": 1,
+            "precio_unitario": 25.50,
+            "subtotal": 25.50
+          }
+        ]
+      },
+      {
+        "id_pedido": 2,
+        "id_cliente": 2,
+        "fecha_pedido": "2024-03-25T14:30:00",
+        "estado": "enviado",
+        "total": 275.00,
+        "detalles": [
+          {
+            "id_producto": 3,
+            "nombre": "Teclado Mecánico Redragon",
+            "cantidad": 1,
+            "precio_unitario": 75.00,
+            "subtotal": 75.00
+          },
+          {
+            "id_producto": 4,
+            "nombre": "Monitor LG 27\"",
+            "cantidad": 1,
+            "precio_unitario": 200.00,
+            "subtotal": 200.00
+          }
+        ]
+      }
+    ],
+    "usuarios": [
+      {
+        "correo": "dummy@dummy.com",
+        "contraseña": "password123"
+      }
+    ]
+  }
+  
