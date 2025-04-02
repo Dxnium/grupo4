@@ -6,7 +6,7 @@ const config = {
     server: "localhost\MSSQLSERVER01", // Try removing \MSSQLSERVER01 if using the default instance
     database: "ShopEasyDB",
     options: {
-        encrypt: false, // Set to true if using Azure SQL
+        encrypt: false,
         enableArithAbort: true,
         trustServerCertificate: true, // Required for self-signed certificates
     },

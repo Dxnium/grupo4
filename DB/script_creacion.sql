@@ -1,25 +1,3 @@
--- Create the admin login at the server level if it does not exist
-IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ShopEasyAdmin')
-BEGIN
-    CREATE LOGIN ShopEasyAdmin WITH PASSWORD = 'contrasena';
-END
-GO
-
--- Use ShopEasyDB
-USE ShopEasyDB;
-GO
-
--- Create the database user if it does not exist
-IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = 'ShopEasyAdmin')
-BEGIN
-    CREATE USER ShopEasyAdmin FOR LOGIN ShopEasyAdmin;
-END
-GO
-
--- Assign db_owner role to ShopEasyAdmin
-ALTER ROLE db_owner ADD MEMBER ShopEasyAdmin;
-GO
-
 -- Crear la base de datos si no existe
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'ShopEasyDB')
 BEGIN
@@ -38,7 +16,7 @@ BEGIN
         correo NVARCHAR(100) UNIQUE NOT NULL,
         telefono NVARCHAR(15),
         direccion NVARCHAR(MAX),
-        fecha_registro DATETIME DEFAULT GETDATE()
+        fecha_registro DATETIME2(0) DEFAULT GETDATE()
     );
 END
 GO
@@ -51,7 +29,8 @@ BEGIN
         nombre NVARCHAR(100) NOT NULL,
         descripcion NVARCHAR(MAX),
         precio DECIMAL(10,2) NOT NULL,
-        stock INT NOT NULL
+        stock INT NOT NULL,
+        fecha_creacion DATETIME2(0) DEFAULT GETDATE()
     );
 END
 GO
@@ -62,7 +41,7 @@ BEGIN
     CREATE TABLE Pedidos (
         id_pedido INT IDENTITY(1,1) PRIMARY KEY,
         id_cliente INT,
-        fecha_pedido DATETIME DEFAULT GETDATE(),
+        fecha_pedido DATETIME2(0) DEFAULT GETDATE(),
         estado NVARCHAR(20) CHECK (estado IN ('pendiente', 'enviado', 'entregado', 'cancelado')) NOT NULL,
         total DECIMAL(10,2) NOT NULL,
         FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
@@ -79,6 +58,7 @@ BEGIN
         id_producto INT,
         cantidad INT NOT NULL,
         precio DECIMAL(10,2) NOT NULL,
+        fecha_creacion DATETIME2(0) DEFAULT GETDATE(),
         FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
         FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
     );
