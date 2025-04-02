@@ -23,8 +23,23 @@ export default function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Shopeasy
           </Typography>
-          <Link href="/login" passHref>
+          <Link className='text-white' href="/" passHref>
+              <Button color="inherit">Inicio</Button>
+          </Link>
+          <Link className='text-white' href="/login" passHref>
               <Button color="inherit">Login</Button>
+          </Link>
+          <Link className='text-white' href="/menu" passHref>
+              <Button color="inherit">Menú</Button>
+          </Link>
+          <Link className='text-white' href="/insertar" passHref>
+              <Button color="inherit">Insertar</Button>
+          </Link>
+          <Link className='text-white' href="/clientes" passHref>
+              <Button color="inherit">Clientes</Button>
+          </Link>
+          <Link className='text-white' href="/reportes" passHref>
+              <Button color="inherit">Reportes</Button>
           </Link>
         </Toolbar>
       </AppBar>
