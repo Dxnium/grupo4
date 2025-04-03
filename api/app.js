@@ -1,9 +1,10 @@
 import express from 'express';
-import { sequelize } from './models/index.js';
+import cors from 'cors';
 import productosRouter from './controllers/productos_controller.js';
 import routerUsuario from './controllers/usuario_controller.js';
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
