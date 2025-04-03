@@ -33,6 +33,20 @@
         "precio": 25.50,
         "stock": 50,
         "fecha_creacion": "2024-03-25T14:30:00"
+      },{
+        "id_producto": 3,
+        "nombre": "Laptop Asus Vivobook",
+        "descripcion": "Laptop de alto rendimiento con Intel i5 y 8GB RAM",
+        "precio": 1000.00,
+        "stock": 10,
+        "fecha_creacion": "2024-03-25T14:30:00"
+      },{
+        "id_producto": 3,
+        "nombre": "Laptop MSI Sword 15",
+        "descripcion": "Laptop de alto rendimiento con Intel i7 y 16GB RAM",
+        "precio": 1400.00,
+        "stock": 5,
+        "fecha_creacion": "2024-03-25T14:30:00"
       }
     ],
     "pedidos": [

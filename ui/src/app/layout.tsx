@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import CssBaseline from '@mui/material/CssBaseline';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <CssBaseline />
             <Navbar></Navbar>
             {children}
+            <Footer></Footer>
           </div>
       </body>
     </html>

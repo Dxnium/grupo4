@@ -25,20 +25,14 @@ export default function Navbar() {
           <Link className="text-white" href="/" passHref>
             <Button color="inherit">Inicio</Button>
           </Link>
-          <Link className="text-white" href="/login" passHref>
-            <Button color="inherit">Login</Button>
+          <Link className="text-white" href="/clientes/productos" passHref>
+            <Button color="inherit">Inventario</Button>
           </Link>
-          <Link className="text-white" href="/menu" passHref>
-            <Button color="inherit">Menú</Button>
+          <Link className="text-white" href="/clientes/editarUsuario" passHref>
+            <Button color="inherit">Editar Informacion</Button>
           </Link>
-          <Link className="text-white" href="/insertar" passHref>
-            <Button color="inherit">Insertar</Button>
-          </Link>
-          <Link className="text-white" href="/clientes" passHref>
-            <Button color="inherit">Clientes</Button>
-          </Link>
-          <Link className="text-white" href="/reportes" passHref>
-            <Button color="inherit">Reportes</Button>
+          <Link className="text-white" href="/clientes/resumenUsuario" passHref>
+            <Button color="inherit">Informacion Usuario</Button>
           </Link>
         </Toolbar>
       </AppBar>
