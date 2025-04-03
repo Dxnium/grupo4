@@ -1,20 +1,28 @@
-"use client"; 
-import { useState, useEffect } from "react";
-import productos from "../../../db/data.json";
-
 // Definir la interfaz para los productos según tu JSON
 interface Product {
-  id_producto: number;
+  id: number;
   nombre: string;
   descripcion: string;
   precio: number;
   stock: number;
-  fecha_creacion: string;
+  createdAt: string;
 }
 
-export default function ProductosPagina(){
 
-  const [products] = useState<Product[]>(productos.productos); // Accedemos a la propiedad 'productos' del JSON
+const getProductos = async (): Promise<Product[]> => {
+  try {
+    const res: Response = await fetch('http://localhost:5000/productos');
+    const data: Product[] = await res.json();
+    return data;
+  } catch (error: unknown) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+}
+export default async function ProductosPagina(){
+
+  // array products
+  const products = await getProductos()
 
   return(
     <main>
@@ -24,13 +32,13 @@ export default function ProductosPagina(){
       {/* Grid de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
-          <div key={product.id_producto} className="border p-4 rounded-lg shadow-lg">
+          <div key={product.id} className="border p-4 rounded-lg shadow-lg">
             {/* Aquí puedes agregar una imagen si la tienes */}
             <h3 className="text-lg font-semibold">{product.nombre}</h3>
             <p className="text-gray-600">{product.descripcion}</p>
             <p className="text-gray-800 font-bold">${product.precio.toFixed(2)}</p>
             <p className="text-sm text-gray-500">Stock: {product.stock}</p>
-            <p className="text-xs text-gray-400">Fecha de creación: {new Date(product.fecha_creacion).toLocaleDateString()}</p>
+            <p className="text-xs text-gray-400">Fecha de creación: {new Date(product.createdAt).toLocaleDateString()}</p>
           </div>
         ))}
       </div>
