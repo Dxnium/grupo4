@@ -1,68 +1,99 @@
-"use client"
-import { useState } from "react";
+"use client"; 
+import { useState, useEffect } from "react";
+import clientesImport from "../../../db/data.json";
 
-interface Item {
-  id: number;
-  nombre: string;
-  estado: "activo" | "inactivo";
-  fecha: string;
-}
+interface traerClientes {
+    id_cliente: number;
+    nombre: string;
+    correo: string;
+    telefono: string;
+    direccion: string;
+    fecha_registro: string;
+ 
+  }
 
-const clientes: Item[] = [
-  { id: 1, nombre: "Juan Pérez", estado: "activo", fecha: "2024-02-15" },
-  { id: 2, nombre: "María López", estado: "inactivo", fecha: "2024-01-10" },
-  { id: 3, nombre: "Carlos Sánchez", estado: "activo", fecha: "2024-03-05" },
-];
-
-const colaboradores: Item[] = [
-  { id: 1, nombre: "Ana Martínez", estado: "activo", fecha: "2023-12-20" },
-  { id: 2, nombre: "Luis Gómez", estado: "inactivo", fecha: "2024-01-25" },
-  { id: 3, nombre: "Sofía Ramírez", estado: "activo", fecha: "2024-02-01" },
-];
-
-function Lista({ data, tipo }: { data: Item[]; tipo: string }) {
-  const [filtro, setFiltro] = useState<"activo" | "inactivo">("activo");
+export default function Clientes() {
+    const [clientesArray] = useState<traerClientes[]>(clientesImport.clientes); // Accedemos a la propiedad 'productos' del JSON
 
   return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "auto", border: "1px solid #ddd", borderRadius: "8px" }}>
-      <h2 style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold", color: "#333" }}>{tipo}</h2>
-      <div>
-        <button onClick={() => setFiltro("activo")} style={{ marginRight: "10px" }}>Activos</button>
-        <button onClick={() => setFiltro("inactivo")}>Inactivos</button>
-      </div>
-      <table style={{ width: "100%", marginTop: "10px", borderCollapse: "collapse" }}>
-        <thead>
-          <tr style={{ borderBottom: "1px solid #ddd" }}>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Estado</th>
-            <th>Fecha de Registro</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.filter(item => item.estado === filtro).map((item: Item) => (
-            <tr key={item.id} style={{ borderBottom: "1px solid #ddd" }}>
-              <td>{item.id}</td>
-              <td>{item.nombre}</td>
-              <td style={{ color: item.estado === "activo" ? "green" : "red", fontWeight: "bold" }}>{item.estado}</td>
-              <td>{item.fecha}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button style={{ marginTop: "20px", padding: "10px 20px", fontSize: "16px", background: "#007bff", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-        Exportar Excel
-      </button>
-    </div>
-  );
-}
 
-export default function Reportes() {
-  return (
-    <div style={{ padding: 20, display: 'grid', gap: 20, textAlign: 'center' }}>
-      <Lista data={clientes} tipo="Clientes" />
-      <hr style={{ width: "50%", margin: "20px auto", border: "1px solid #ccc" }} />
-      <Lista data={colaboradores} tipo="Colaboradores" />
-    </div>
+    <>
+    
+    <main>
+
+        <div className="container">
+            <h1>Reportes</h1>
+        </div>
+        <div className="container mt-6 mb-6">
+            <h2 className="text-3xl font-bold mb-4">Reporte Informacion de Clientes</h2>
+            <table className="min-w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th className="px-4 py-2 border text-left">Nombre</th>
+                        <th className="px-4 py-2 border text-left">Correo Electronico</th>
+                        <th className="px-4 py-2 border text-left">Telefono</th>
+                        <th className="px-4 py-2 border text-left">Dirección</th>
+                        <th className="px-4 py-2 border text-left">Fecha de registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {clientesArray.map((datoCliente) => (
+                    <tr key={datoCliente.id_cliente} className="bg-white">
+                        <td className="px-4 py-2 border">{datoCliente.nombre}</td>
+                        <td className="px-4 py-2 border">{datoCliente.correo}</td>
+                        <td className="px-4 py-2 border">{datoCliente.telefono}</td>
+                        <td className="px-4 py-2 border">{datoCliente.direccion}</td>
+                        <td className="px-4 py-2 border">{new Date(datoCliente.fecha_registro).toLocaleDateString()}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            <button
+                type="submit"
+                className="w-40 mt-2 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                Generar pdf
+            </button>
+        </div>
+
+        <div className="container mt-6 mb-6">
+            <h2 className="text-3xl font-bold mb-4">Reporte Informacion de Colaboradores</h2>
+            <table className="min-w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th className="px-4 py-2 border text-left">Nombre Colaborador</th>
+                        <th className="px-4 py-2 border text-left">Correo Electronico</th>
+                        <th className="px-4 py-2 border text-left">Telefono</th>
+                        <th className="px-4 py-2 border text-left">Dirección</th>
+                        <th className="px-4 py-2 border text-left">Fecha de registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className="bg-white">
+                        <td className="px-4 py-2 border">Name Default</td>
+                        <td className="px-4 py-2 border">correoelectronico@gmail.com</td>
+                        <td className="px-4 py-2 border">00000000</td>
+                        <td className="px-4 py-2 border">En algún lugar por defecto</td>
+                        <td className="px-4 py-2 border">00/00/0000</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                        <td className="px-4 py-2 border">Name Default</td>
+                        <td className="px-4 py-2 border">correoelectronico@gmail.com</td>
+                        <td className="px-4 py-2 border">00000000</td>
+                        <td className="px-4 py-2 border">En algún lugar por defecto</td>
+                        <td className="px-4 py-2 border">00/00/0000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button
+            type="submit"
+            className="w-40 mt-2 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+            Generar pdf
+            </button>
+        </div>
+
+    </main>
+    </>
+    
   );
 }
