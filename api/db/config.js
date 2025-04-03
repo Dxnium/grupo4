@@ -1,29 +1,23 @@
-require('dotenv').config();
-const sql = require('mssql');
+import dotenv from 'dotenv';
+import { Sequelize } from 'sequelize';
 
-const dbConfig = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PWD,
-  server: process.env.DB_SERVER,
-  database: process.env.DB_NAME,
-  options: {
-    encrypt: false,
-    trustServerCertificate: true,
+dotenv.config();
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PWD, {
+  host: process.env.DB_SERVER,
+  dialect: 'mssql',
+  dialectOptions: {
+    options: { encrypt: false, trustServerCertificate: true },
   },
-};
+  logging: console.log,
+});
 
-const poolPromise = new sql.ConnectionPool(dbConfig)
-  .connect()
-  .then((pool) => {
-    console.log('Connected to SQL Server');
-    return pool;
+sequelize.sync()
+  .then(() => {
+    console.log('Database & tables created!');
   })
-  .catch((err) => {
-    console.error('Database connection failed:', err);
-    process.exit(1);
+  .catch((error) => {
+    console.error('Error syncing database:', error);
   });
 
-module.exports = {
-  sql,
-  poolPromise,
-};
+export default sequelize;

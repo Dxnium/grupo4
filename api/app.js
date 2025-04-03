@@ -1,21 +1,20 @@
-const express = require('express');
-const { sql, poolPromise } = require('./db/config');
+import express from 'express';
+import { sequelize } from './models/index.js';
+import productosRouter from './controllers/productos_controller.js';
+import routerUsuario from './controllers/usuario_controller.js';
 
 const app = express();
 
 app.use(express.json());
 
-app.get('/clientes', async (req, res) => {
-  try {
-    const pool = await poolPromise;
-    const result = await pool.request().query('SELECT * FROM Clientes');
-    res.json(result.recordset);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+app.use('/productos', productosRouter)
+app.use('/usuarios', routerUsuario)
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const startServer = async () => {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+};
+
+startServer();
