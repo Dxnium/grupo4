@@ -1,3 +1,5 @@
+import { Typography } from "@mui/material";
+
 // Definir la interfaz para los productos según tu JSON
 interface Product {
   id: number;
@@ -46,8 +48,7 @@ export default async function ProductosPagina(){
 
     <div className="container mx-auto m-6">
       <h2 className="text-3xl font-bold mb-4">Sobre Nosotros</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum placeat cupiditate, odit nesciunt, id ipsum maiores possimus facilis pariatur explicabo earum dolores deleniti deserunt, exercitationem ullam repudiandae nulla unde natus!</p>
-        
+        <p>En <strong>ShopEasy</strong> nos dedicamos a ofrecer productos de alta calidad, combinando innovación, compromiso y atención personalizada. Nuestro objetivo es mejorar la vida de nuestros clientes a través de soluciones tecnológicas accesibles, construyendo relaciones basadas en la confianza, la transparencia y el servicio excepcional.</p>
     </div>
     
     </main>

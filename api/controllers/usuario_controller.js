@@ -38,6 +38,18 @@ routerUsuario.post('/registro', async (req, res) => {
     }
 });
 
+routerUsuario.post('/registro/colaborador', async (req, res) => {
+    try {
+        let nuevoUsuario = req.body;
+        let password = await bycrypt.hash(nuevoUsuario.contraseña, 10);
+        nuevoUsuario = { ...nuevoUsuario, role_id: 2, activo: true, contraseña: password };
+        const usuario = await Usuario.create(nuevoUsuario);
+        res.json(usuario);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 routerUsuario.patch('/', async (req, res) => {
     try {
         const { id, ...usuario } = req.body;
