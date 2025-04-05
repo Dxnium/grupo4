@@ -23,6 +23,12 @@ const Usuario = sequelize.define('Usuario', {
         key: 'id',
       },
     },
+    telefono: {
+      type: DataTypes.STRING,
+    },
+    direccion: {
+      type: DataTypes.STRING,
+    },
     activo: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

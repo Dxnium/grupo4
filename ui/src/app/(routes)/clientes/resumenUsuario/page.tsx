@@ -1,9 +1,12 @@
 
 
-"use client"; 
+"use client";
+import { useUserContext } from "@/app/context/UserContext";
 
+ 
 
 export default function editarInformacionPage(){
+    const { user }= useUserContext();
     
     return(
     <main>
@@ -14,28 +17,24 @@ export default function editarInformacionPage(){
             <table className="min-w-full table-auto border-collapse">
                 <tbody>
                     <tr className="bg-white">
-                        <th className="px-4 py-2 border text-left">Nombre usuario</th>
-                        <td className="px-4 py-2 border">User Default</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                        <th className="px-4 py-2 border text-left">Nombre Personal</th>
-                        <td className="px-4 py-2 border">Nombre Nombre Apellido Apellido</td>
+                        <th className="px-4 py-2 border text-left">Nombre</th>
+                        <td className="px-4 py-2 border">{user?.nombre}</td>
                     </tr>
                     <tr className="bg-gray-50">
                         <th className="px-4 py-2 border text-left">Correo Electronico</th>
-                        <td className="px-4 py-2 border">correoelectronico@gmail.com</td>
+                        <td className="px-4 py-2 border">{user?.email}</td>
                     </tr>
                     <tr className="bg-gray-50">
                         <th className="px-4 py-2 border text-left">Telefono</th>
-                        <td className="px-4 py-2 border">00000000</td>
+                        <td className="px-4 py-2 border">{user?.telefono}</td>
                     </tr>
                     <tr className="bg-gray-50">
                         <th className="px-4 py-2 border text-left">Dirección</th>
-                        <td className="px-4 py-2 border">En algún lugar por defecto</td>
+                        <td className="px-4 py-2 border">{user?.direccion}</td>
                     </tr>
                     <tr className="bg-gray-50">
                         <th className="px-4 py-2 border text-left">Fecha de registro</th>
-                        <td className="px-4 py-2 border">00/00/0000</td>
+                        <td className="px-4 py-2 border">{user?.createdAt}</td>
                     </tr>
                 </tbody>
             </table>

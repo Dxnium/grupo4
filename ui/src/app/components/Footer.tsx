@@ -1,9 +1,13 @@
+'use client'
 import { Container, Typography, Box } from "@mui/material";
+import { useUserContext } from "../context/UserContext";
 
 export default function footer() {
+  const { user } = useUserContext();
   return (
     <Box
       component="footer"
+      style={{ background: user?.role_id === 3 ? "#000" : "#1976d2" }}
       sx={{
         width: "100%",
         py: 2,

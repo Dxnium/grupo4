@@ -6,6 +6,8 @@ interface User {
   id: number;
   nombre: string;
   email: string;
+  telefono: string;
+  direccion: string;
   role_id: number;
   activo: boolean;
   createdAt: string;
@@ -24,6 +26,14 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 // Provider component
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  React.useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

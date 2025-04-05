@@ -16,6 +16,12 @@ const Login = () => {
       return
     }
     setUser(data)
+    localStorage.setItem('user', JSON.stringify(data));
+    if (data.role_id === 3) {
+      window.location.href = '/admin/clientes';
+      return
+    }
+    window.location.href = '/clientes/productos';
   };
 
   return (

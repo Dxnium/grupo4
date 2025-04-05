@@ -1,7 +1,7 @@
 
 "use client"; 
 import { useState, useEffect } from "react";
-import clientesImport from "../../../../db/data.json";
+import clientesImport from "../../../db/data.json";
 
 interface traerClientes {
     id_cliente: number;

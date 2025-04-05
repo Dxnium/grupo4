@@ -12,7 +12,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   logging: console.log,
 });
 
-sequelize.sync()
+sequelize.sync() 
   .then(() => {
     console.log('Database & tables created!');
   })
